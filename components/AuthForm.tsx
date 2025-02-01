@@ -30,49 +30,50 @@ export const AuthForm: React.FC<AuthFormProps> = ({ onAuthSuccess }) => {
   }
 
   return (
-    <div className="bg-card text-card-foreground p-6 rounded-lg shadow-md">
-      <h2 className="text-2xl font-semibold mb-4">{isLogin ? "Login" : "Sign Up"}</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium text-muted-foreground">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="mt-1 block w-full rounded-md border-input bg-background px-3 py-2 text-sm ring-offset-background"
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="password" className="block text-sm font-medium text-muted-foreground">
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="mt-1 block w-full rounded-md border-input bg-background px-3 py-2 text-sm ring-offset-background"
-            required
-          />
-        </div>
-        <button
-          type="submit"
-          className="w-full px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90"
-        >
-          {isLogin ? "Login" : "Sign Up"}
-        </button>
-      </form>
-      <p className="mt-4 text-center">
-        {isLogin ? "Don't have an account? " : "Already have an account? "}
-        <button onClick={() => setIsLogin(!isLogin)} className="text-primary hover:underline">
-          {isLogin ? "Sign Up" : "Login"}
-        </button>
-      </p>
+    <div className="flex justify-center items-center min-h-screen bg-background">
+      <div className="bg-card text-card-foreground p-6 rounded-lg shadow-md w-full sm:w-96">
+        <h2 className="text-2xl font-semibold mb-4">{isLogin ? "Login" : "Sign Up"}</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-muted-foreground">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="mt-1 block w-full rounded-md border border-input px-3 py-2 text-sm ring-offset-background"
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-muted-foreground">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="mt-1 block w-full rounded-md border border-input px-3 py-2 text-sm ring-offset-background"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90"
+          >
+            {isLogin ? "Login" : "Sign Up"}
+          </button>
+        </form>
+        <p className="mt-4 text-center">
+          {isLogin ? "Don't have an account? " : "Already have an account? "}
+          <button onClick={() => setIsLogin(!isLogin)} className="text-primary hover:underline">
+            {isLogin ? "Sign Up" : "Login"}
+          </button>
+        </p>
+      </div>
     </div>
   )
 }
-
