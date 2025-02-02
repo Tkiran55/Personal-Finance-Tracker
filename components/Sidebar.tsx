@@ -5,10 +5,12 @@ import { usePathname } from "next/navigation"
 import { Home, DollarSign, PieChart, Settings, LogOut } from "lucide-react"
 import { useAuth } from "../contexts/AuthContext"
 import { ThemeToggle } from "./ThemeToggle"
+import { signOut } from "firebase/auth"
+import { auth } from "@/lib/firebase"
 
 export function Sidebar() {
   const pathname = usePathname()
-  const { user, signOut } = useAuth()
+  const { user } = useAuth()
 
   const links = [
     { name: "Dashboard", href: "/", icon: Home },
@@ -45,7 +47,7 @@ export function Sidebar() {
         <ThemeToggle />
         {user && (
           <button
-            onClick={() => signOut()}
+            onClick={() => signOut(auth)}
             className="flex items-center p-2 space-x-3 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             <LogOut className="w-6 h-6" />

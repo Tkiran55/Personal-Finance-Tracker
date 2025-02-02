@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useMemo } from "react"
 import { useFinance, type Transaction } from "../contexts/FinanceContext"
 
@@ -15,6 +13,8 @@ export function TransactionList({ transactions }: { transactions: Transaction[] 
   const [searchTerm, setSearchTerm] = useState("")
   const [filterCategory, setFilterCategory] = useState("")
   const [deleteConfirmId, setDeleteConfirmId] = useState<string | null>(null)
+  const [currentPage, setCurrentPage] = useState(1)
+  const itemsPerPage = 5
 
   const handleEdit = (transaction: Transaction) => {
     setEditingId(transaction.id)
@@ -51,6 +51,9 @@ export function TransactionList({ transactions }: { transactions: Transaction[] 
     )
   }, [transactions, searchTerm, filterCategory])
 
+  const pageCount = Math.ceil(filteredTransactions.length / itemsPerPage)
+  const currentTransactions = filteredTransactions.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
+
   const getCategoryColor = (categoryName: string) => {
     const category = categories.find((c) => c.name === categoryName)
     return category ? category.color : "#000000"
@@ -58,7 +61,9 @@ export function TransactionList({ transactions }: { transactions: Transaction[] 
 
   return (
     <div className="bg-card text-card-foreground p-6 rounded-lg shadow-md">
-      <h2 className="text-2xl font-semibold mb-4">Transactions</h2>
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-2xl font-semibold">Transactions</h2>
+      </div>
       <div className="mb-4 space-y-2">
         <input
           type="text"
@@ -81,7 +86,7 @@ export function TransactionList({ transactions }: { transactions: Transaction[] 
         </select>
       </div>
       <ul className="space-y-4">
-        {filteredTransactions.map((transaction) => (
+        {currentTransactions.map((transaction) => (
           <li key={transaction.id} className="border-b pb-2">
             {editingId === transaction.id ? (
               <div className="flex flex-col space-y-2">
@@ -156,7 +161,25 @@ export function TransactionList({ transactions }: { transactions: Transaction[] 
           </li>
         ))}
       </ul>
+      <div className="mt-4 flex justify-between items-center">
+        <button
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+          className="px-4 py-2 bg-secondary text-secondary-foreground rounded-md disabled:opacity-50"
+        >
+          Previous
+        </button>
+        <span>
+          Page {currentPage} of {pageCount}
+        </span>
+        <button
+          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, pageCount))}
+          disabled={currentPage === pageCount}
+          className="px-4 py-2 bg-secondary text-secondary-foreground rounded-md disabled:opacity-50"
+        >
+          Next
+        </button>
+      </div>
     </div>
   )
 }
-

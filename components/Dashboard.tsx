@@ -38,7 +38,7 @@ export function Dashboard() {
   }, [user])
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div className="flex items-center justify-center min-h-screen">Loading...</div>
   }
 
   if (!user) {

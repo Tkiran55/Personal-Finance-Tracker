@@ -47,7 +47,7 @@ export function PINLock({ onUnlock }: PINLockProps) {
 
   return (
     <div className="fixed inset-0 bg-background flex items-center justify-center z-50">
-      <div className="bg-card text-card-foreground p-6 rounded-lg shadow-md w-80">
+      <div className="bg-card text-card-foreground p-6 rounded-lg shadow-md w-full max-w-md">
         <h2 className="text-2xl font-semibold mb-4">Enter PIN</h2>
         <input
           type="password"

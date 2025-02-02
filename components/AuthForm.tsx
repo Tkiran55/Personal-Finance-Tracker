@@ -30,8 +30,8 @@ export const AuthForm: React.FC<AuthFormProps> = ({ onAuthSuccess }) => {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-background">
-      <div className="bg-card text-card-foreground p-6 rounded-lg shadow-md w-full sm:w-96">
+    <div className="flex items-center justify-center min-h-screen bg-background">
+      <div className="bg-card text-card-foreground p-6 rounded-lg shadow-md w-full max-w-md">
         <h2 className="text-2xl font-semibold mb-4">{isLogin ? "Login" : "Sign Up"}</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -43,7 +43,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({ onAuthSuccess }) => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full rounded-md border border-input px-3 py-2 text-sm ring-offset-background"
+              className="mt-1 block w-full rounded-md border-input bg-background px-3 py-2 text-sm ring-offset-background"
               required
             />
           </div>
@@ -56,7 +56,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({ onAuthSuccess }) => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 block w-full rounded-md border border-input px-3 py-2 text-sm ring-offset-background"
+              className="mt-1 block w-full rounded-md border-input bg-background px-3 py-2 text-sm ring-offset-background"
               required
             />
           </div>
@@ -77,3 +77,4 @@ export const AuthForm: React.FC<AuthFormProps> = ({ onAuthSuccess }) => {
     </div>
   )
 }
+

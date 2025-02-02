@@ -38,8 +38,8 @@ export const PINSetup: React.FC<PINSetupProps> = ({ onPINSet }) => {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-background">
-      <div className="bg-card text-card-foreground p-6 rounded-lg shadow-md w-full sm:w-96">
+    <div className="flex items-center justify-center min-h-screen bg-background">
+      <div className="bg-card text-card-foreground p-6 rounded-lg shadow-md w-full max-w-md">
         <h2 className="text-2xl font-semibold mb-4">Set Up PIN</h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -51,7 +51,7 @@ export const PINSetup: React.FC<PINSetupProps> = ({ onPINSet }) => {
               id="pin"
               value={pin}
               onChange={(e) => setPin(e.target.value.replace(/\D/g, "").slice(0, 4))}
-              className="mt-1 block w-full rounded-md border-input px-3 py-2 text-sm ring-offset-background"
+              className="mt-1 block w-full rounded-md border-input bg-background px-3 py-2 text-sm ring-offset-background"
               required
               maxLength={4}
               pattern="\d{4}"
@@ -68,3 +68,4 @@ export const PINSetup: React.FC<PINSetupProps> = ({ onPINSet }) => {
     </div>
   )
 }
+
